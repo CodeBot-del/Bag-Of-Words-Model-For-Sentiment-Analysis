@@ -11,17 +11,17 @@ sentences = [[ 'this' , 'is' , 'the' , 'first' , 'sentence' , 'for' , 'word2vec'
 
 # train model
 model = Word2Vec(sentences, min_count=1)
-print(model[0])
+
 
 # # fit a 2d PCA model to the vectors
-# X = model[model.wv.key_to_index]
-# pca = PCA(n_components=2)
-# result = pca.fit_transform(X)
+X = model[model.wv.vocab]
+pca = PCA(n_components=2)
+result = pca.fit_transform(X)
 
-# # create a scatter plot of the projection
-# pyplot.scatter(result[:, 0], result[:, 1])
-# words = list(model.wv.key_to_index)
+# create a scatter plot of the projection
+pyplot.scatter(result[:, 0], result[:, 1])
+words = list(model.wv.vocab)
 
-# for i, word in enumerate(words):
-#     pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
-# pyplot.show()
+for i, word in enumerate(words):
+    pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
+pyplot.show()
